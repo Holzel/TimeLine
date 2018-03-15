@@ -107,12 +107,14 @@ public class UserInterface implements Runnable {
 
         private JPanel createButtonPanel() {
 
-            JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
-            buttonPanel.setSize(new Dimension(600, 75));
-            buttonPanel.setMinimumSize(new Dimension(600, 75));
-            buttonPanel.setMaximumSize(new Dimension(600, 75));
+            JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 40, 40));
+            buttonPanel.setSize(new Dimension(30, 10));
+            buttonPanel.setMinimumSize(new Dimension(25, 10));
+            buttonPanel.setMaximumSize(new Dimension(30, 10));
 
             JButton addButton = new JButton("Add");
+            JPanel panelthing = new JPanel(); //Create new panel to help with button size
+            panelthing.add(addButton); // put addButton inside the new panel (buttonPanel > panelthing > addButton)
             addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -120,7 +122,7 @@ public class UserInterface implements Runnable {
                 }
             });
 
-            buttonPanel.add(addButton);
+            buttonPanel.add(panelthing); //add panelthing which contains buttons to buttonPanel
 
             JButton removeButton = new JButton("Remove");
             removeButton.addActionListener(new ActionListener() {
@@ -130,7 +132,9 @@ public class UserInterface implements Runnable {
                 }
             });
 
-            buttonPanel.add(removeButton);
+            panelthing.add(removeButton); //add removebutton to panelthing
+            buttonPanel.add(panelthing); //add panelthing to buttonPanel
+            
 
             JButton filterButton = new JButton("Filter");
             filterButton.addActionListener(new ActionListener() {
@@ -140,7 +144,8 @@ public class UserInterface implements Runnable {
                 }
             });
 
-            buttonPanel.add(filterButton);
+            panelthing.add(filterButton); //rinse and repeat
+            buttonPanel.add(panelthing); // same thing
 
             return buttonPanel;
         }
